@@ -1,0 +1,81 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "dasd",
+      "body": "Браслеты",
+      "id": 2
+    },
+    {
+      "title": "dasdadasdasdasdasdasd",
+      "body": "Браслеты",
+      "id": 3
+    },
+    {
+      "title": "Браслет какой-то там",
+      "body": "Браслеты",
+      "id": 4
+    },
+    {
+      "title": "Браслет какой-то там",
+      "body": "Браслеты",
+      "id": 5
+    },
+    {
+      "title": "dasda",
+      "body": "Цепочки",
+      "id": 6
+    },
+    {
+      "title": "asdfs",
+      "body": "Серёжки",
+      "img": null,
+      "id": 7
+    },
+    {
+      "title": "wsa",
+      "body": "Для мужика",
+      "id": 8
+    },
+    {
+      "title": "wsa",
+      "body": "Для мужика",
+      "id": 9
+    },
+    {
+      "title": "asdasd",
+      "body": "Серёжки",
+      "id": 10
+    },
+    {
+      "title": "asdasd",
+      "body": "Серёжки",
+      "id": 11
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "images": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

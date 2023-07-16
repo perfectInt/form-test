@@ -1,10 +1,6 @@
 {
   "posts": [
-    {
-      "title": "dsada",
-      "body": "Браслеты",
-      "id": 1
-    }
+
   ],
   "comments": [
     {
@@ -13,11 +9,7 @@
       "postId": 1
     }
   ],
-  "images": [
-    {
-      "id": 1
-    }
-  ],
+  "images": [],
   "profile": {
     "name": "typicode"
   }

@@ -62,22 +62,16 @@ const options = [
 function onSubmit() {
 
 
-  axios.post('http://localhost:3000/posts', {
-    title: title.value,
-    body: model.value,
-  })
-    .then((response) => console.log(response.data))
-
-  const formData = new FormData();
-  formData.append('image', selectedFile.value);
+  
   console.log(selectedFile.value)
+  console.log([...selectedFile.value])
 
   axios
-    .post('http://localhost:3000/images', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+    .post('http://localhost:3000/posts', {
+      title: title.value,
+      body: model.value,
+      image: [...selectedFile.value].map(e => e.name)
+    }, )
     .then(response => {
       console.log(response);
       let imageUrl = response.data.imageUrl;
@@ -91,25 +85,7 @@ function onSubmit() {
 function handleFileUpload(event) {
   selectedFile.value = event.target.files;
 }
-// function uploadImage() {
-//   const formData = new FormData();
-//   formData.append('image', this.selectedFile);
-//   console.log(this.selectedFile)
-//
-//   axios
-//     .post('http://localhost:3000/posts/img', formData, {
-//       headers: {
-//         'Content-Type': 'multipart/form-data',
-//       },
-//     })
-//     .then(response => {
-//       console.log(response);
-//       this.imageUrl = response.data.imageUrl;
-//     })
-//     .catch(error => {
-//       console.error( error);
-//     });
-// }
+
 
 function onReset() {
   title.value = null

@@ -27,7 +27,9 @@
 <!--          square-->
 <!--          url="http://localhost:3000/posts"-->
 <!--        />-->
-        <upload-file class="col-md-6"/>
+        <div class="col-md-6">
+          <input type="file" multiple @change="handleFileUpload" accept="image/*" />
+        </div>
         <div class="col-md-6 ">
           <q-btn color="primary" label="Submit" size="17px" type="submit"/>
           <q-btn class="q-ml-sm" color="primary" flat label="Reset" size="17px" type="reset"/>
@@ -42,7 +44,7 @@
 import {useQuasar} from "quasar";
 import { ref} from "vue";
 import axios from 'axios';
-import UploadFile from "./UploadFile.vue";
+
 import GetImage from "./GetImage.vue";
 
 
@@ -51,6 +53,7 @@ const $q = useQuasar()
 const title = ref(null);
 const body = ref(null);
 const model = ref(null);
+const selectedFile = ref(null)
 const options = [
   'Браслеты', 'Серёжки', 'Цепочки', 'Для мужика', 'Для прекрасной половины человечества'
 ]
@@ -65,8 +68,48 @@ function onSubmit() {
   })
     .then((response) => console.log(response.data))
 
+  const formData = new FormData();
+  formData.append('image', selectedFile.value);
+  console.log(selectedFile.value)
+
+  axios
+    .post('http://localhost:3000/images', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then(response => {
+      console.log(response);
+      let imageUrl = response.data.imageUrl;
+    })
+    .catch(error => {
+      console.error( error);
+    });
+
 
 }
+function handleFileUpload(event) {
+  selectedFile.value = event.target.files;
+}
+// function uploadImage() {
+//   const formData = new FormData();
+//   formData.append('image', this.selectedFile);
+//   console.log(this.selectedFile)
+//
+//   axios
+//     .post('http://localhost:3000/posts/img', formData, {
+//       headers: {
+//         'Content-Type': 'multipart/form-data',
+//       },
+//     })
+//     .then(response => {
+//       console.log(response);
+//       this.imageUrl = response.data.imageUrl;
+//     })
+//     .catch(error => {
+//       console.error( error);
+//     });
+// }
 
 function onReset() {
   title.value = null

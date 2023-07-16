@@ -70,7 +70,7 @@ function onSubmit() {
     .post('http://localhost:3000/posts', {
       title: title.value,
       body: model.value,
-      image: [...selectedFile.value].map(e => e.name)
+      image: [...selectedFile.value]
     }, )
     .then(response => {
       console.log(response);

@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+
+  saros-db:
+    container_name: saros-db
+    image: postgres:14.4-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: saros-db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: test
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-saros:/var/lib/postgresql/saros/data
+    networks:
+      - saros-network
+
+  saros-api:
+    container_name: saros-api
+    image: perfectvint/saros-api:latest
+    restart: always
+    environment:
+      SAROS_DB_USERNAME: root
+      SAROS_DB_PASSWORD: test
+      SPRING_DATASOURCE_URL: jdbc:postgresql://saros-db:5432/saros-db
+    depends_on:
+      - saros-db
+    ports:
+      - "8081:8081"
+    networks:
+      - saros-network
+
+
+volumes:
+  db-saros:
+    driver: local
+
+networks:
+  saros-network:
